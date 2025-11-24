@@ -1,0 +1,26 @@
+{
+    "extName": {
+        "message": "Open in Incognito",
+        "description": "Extension name"
+    },
+    "extDescription": {
+        "message": "Open the active tab or a link in a incognito window via toolbar button, context-menu or keyboard shortcut.",
+        "description": "Extension description"
+    },
+    "contextLink": {
+        "message": "Open Link in Incognito",
+        "description": "Context menu item for links"
+    },
+    "contextSelection": {
+        "message": "Open/Search Selection in Incognito",
+        "description": "Context menu item for selected text"
+    },
+    "contextPage": {
+        "message": "Open Page in Incognito",
+        "description": "Context menu item for the page"
+    },
+    "commandOpen": {
+        "message": "Open current tab in incognito",
+        "description": "Command description"
+    }
+}

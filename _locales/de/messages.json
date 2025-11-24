@@ -1,0 +1,26 @@
+{
+    "extName": {
+        "message": "In Inkognito öffnen",
+        "description": "Extension name"
+    },
+    "extDescription": {
+        "message": "Öffnen Sie den aktiven Tab oder einen Link in einem Inkognito-Fenster über die Symbolleiste, das Kontextmenü oder per Tastenkürzel.",
+        "description": "Extension description"
+    },
+    "contextLink": {
+        "message": "Link im Inkognito-Fenster öffnen",
+        "description": "Context menu item for links"
+    },
+    "contextSelection": {
+        "message": "Auswahl im Inkognito-Fenster öffnen/suchen",
+        "description": "Context menu item for selected text"
+    },
+    "contextPage": {
+        "message": "Seite im Inkognito-Fenster öffnen",
+        "description": "Context menu item for the page"
+    },
+    "commandOpen": {
+        "message": "Aktuellen Tab im Inkognito-Fenster öffnen",
+        "description": "Command description"
+    }
+}

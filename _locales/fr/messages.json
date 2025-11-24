@@ -1,0 +1,26 @@
+{
+    "extName": {
+        "message": "Ouvrir en navigation privée",
+        "description": "Extension name"
+    },
+    "extDescription": {
+        "message": "Ouvrez l'onglet actif ou un lien dans une fenêtre de navigation privée via le bouton de la barre d'outils, le menu contextuel ou le raccourci clavier.",
+        "description": "Extension description"
+    },
+    "contextLink": {
+        "message": "Ouvrir le lien en navigation privée",
+        "description": "Context menu item for links"
+    },
+    "contextSelection": {
+        "message": "Ouvrir/Rechercher la sélection en navigation privée",
+        "description": "Context menu item for selected text"
+    },
+    "contextPage": {
+        "message": "Ouvrir la page en navigation privée",
+        "description": "Context menu item for the page"
+    },
+    "commandOpen": {
+        "message": "Ouvrir l'onglet actuel en navigation privée",
+        "description": "Command description"
+    }
+}

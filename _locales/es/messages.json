@@ -1,0 +1,26 @@
+{
+    "extName": {
+        "message": "Abrir en Incógnito",
+        "description": "Extension name"
+    },
+    "extDescription": {
+        "message": "Abra la pestaña activa o un enlace en una ventana de incógnito mediante el botón de la barra de herramientas, el menú contextual o el atajo de teclado.",
+        "description": "Extension description"
+    },
+    "contextLink": {
+        "message": "Abrir enlace en incógnito",
+        "description": "Context menu item for links"
+    },
+    "contextSelection": {
+        "message": "Abrir/Buscar selección en incógnito",
+        "description": "Context menu item for selected text"
+    },
+    "contextPage": {
+        "message": "Abrir página en incógnito",
+        "description": "Context menu item for the page"
+    },
+    "commandOpen": {
+        "message": "Abrir pestaña actual en incógnito",
+        "description": "Command description"
+    }
+}

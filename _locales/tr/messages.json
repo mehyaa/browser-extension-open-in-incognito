@@ -1,0 +1,26 @@
+{
+    "extName": {
+        "message": "Gizli Pencerede Aç",
+        "description": "Extension name"
+    },
+    "extDescription": {
+        "message": "Aktif sekmeyi veya bir bağlantıyı araç çubuğu düğmesi, içerik menüsü veya klavye kısayolu ile gizli pencerede açın.",
+        "description": "Extension description"
+    },
+    "contextLink": {
+        "message": "Bağlantıyı Gizli Pencerede Aç",
+        "description": "Context menu item for links"
+    },
+    "contextSelection": {
+        "message": "Seçimi Gizli Pencerede Aç/Ara",
+        "description": "Context menu item for selected text"
+    },
+    "contextPage": {
+        "message": "Sayfayı Gizli Pencerede Aç",
+        "description": "Context menu item for the page"
+    },
+    "commandOpen": {
+        "message": "Geçerli sekmeyi gizli pencerede aç",
+        "description": "Command description"
+    }
+}

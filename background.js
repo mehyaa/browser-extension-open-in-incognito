@@ -3,7 +3,6 @@
  */
 
 // Create context menu items on installation
-// Create context menu items on installation
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
         id: "open-link-incognito",
@@ -25,42 +24,9 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 /**
- * Helper to open a URL in an incognito window
- * @param {string} url
- */
-function openInIncognito(url) {
-    if (!url) return;
-
-    // Create new incognito window with the URL
-    chrome.windows.create({
-        url: url,
-        incognito: true,
-        focused: true
-    });
-}
-
-/**
- * Helper to check if text is a valid URL
- * Simple check: starts with http:// or https:// or looks like domain.com
- * @param {string} text
- * @returns {boolean}
- */
-function isUrl(text) {
-    try {
-        const url = new URL(text);
-
-        return url.protocol === 'http:' || url.protocol === 'https:';
-    } catch (e) {
-        // If new URL() fails, check for simple domain pattern (e.g. google.com)
-        // This is a basic check, can be improved.
-        return /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+/.test(text);
-    }
-}
-
-/**
  * Handle context menu clicks
  */
-chrome.contextMenus.onClicked.addListener((info, tab) => {
+chrome.contextMenus.onClicked.addListener(info => {
     if (info.menuItemId === "open-link-incognito") {
         openInIncognito(info.linkUrl);
     } else if (info.menuItemId === "open-selection-incognito") {
@@ -87,7 +53,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 /**
  * Handle toolbar icon click
  */
-chrome.action.onClicked.addListener((tab) => {
+chrome.action.onClicked.addListener(tab => {
     if (tab?.url) {
         openInIncognito(tab.url);
     }
@@ -96,7 +62,7 @@ chrome.action.onClicked.addListener((tab) => {
 /**
  * Handle keyboard shortcuts
  */
-chrome.commands.onCommand.addListener((command) => {
+chrome.commands.onCommand.addListener(command => {
     if (command === "open_in_incognito") {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             if (tabs && tabs.length > 0) {
@@ -105,3 +71,36 @@ chrome.commands.onCommand.addListener((command) => {
         });
     }
 });
+
+/**
+ * Helper to open a URL in an incognito window
+ * @param {string} url
+ */
+function openInIncognito(url) {
+    if (!url) return;
+
+    // Create new incognito window with the URL
+    chrome.windows.create({
+        url,
+        incognito: true,
+        focused: true
+    });
+}
+
+/**
+ * Helper to check if text is a valid URL
+ * Simple check: starts with http:// or https:// or looks like domain.com
+ * @param {string} text
+ * @returns {boolean}
+ */
+function isUrl(text) {
+    try {
+        const url = new URL(text);
+
+        return url.protocol === 'http:' || url.protocol === 'https:';
+    } catch {
+        // If new URL() fails, check for simple domain pattern (e.g. google.com)
+        // This is a basic check, can be improved.
+        return /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+/.test(text);
+    }
+}

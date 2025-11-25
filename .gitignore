@@ -33,3 +33,5 @@ yarn-error.log*
 *.sw?
 
 *.zip
+
+manifest.json

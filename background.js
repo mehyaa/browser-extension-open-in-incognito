@@ -2,23 +2,31 @@
  * Open in Incognito - Background Script
  */
 
+try {
+    if (typeof chrome !== "undefined" || typeof browser === "undefined") {
+        importScripts("browser-polyfill.min.js");
+    }
+} catch {
+    // Ignore, likely not in a Service Worker or already loaded
+}
+
 // Create context menu items on installation
-chrome.runtime.onInstalled.addListener(() => {
-    chrome.contextMenus.create({
+browser.runtime.onInstalled.addListener(() => {
+    browser.contextMenus.create({
         id: "open-link-incognito",
-        title: chrome.i18n.getMessage("contextLink"),
+        title: browser.i18n.getMessage("contextLink"),
         contexts: ["link"]
     });
 
-    chrome.contextMenus.create({
+    browser.contextMenus.create({
         id: "open-selection-incognito",
-        title: chrome.i18n.getMessage("contextSelection"),
+        title: browser.i18n.getMessage("contextSelection"),
         contexts: ["selection"]
     });
 
-    chrome.contextMenus.create({
+    browser.contextMenus.create({
         id: "open-page-incognito",
-        title: chrome.i18n.getMessage("contextPage"),
+        title: browser.i18n.getMessage("contextPage"),
         contexts: ["page"]
     });
 });
@@ -26,9 +34,9 @@ chrome.runtime.onInstalled.addListener(() => {
 /**
  * Handle context menu clicks
  */
-chrome.contextMenus.onClicked.addListener(info => {
+browser.contextMenus.onClicked.addListener(async (info) => {
     if (info.menuItemId === "open-link-incognito") {
-        openInIncognito(info.linkUrl);
+        await openInIncognito(info.linkUrl);
     } else if (info.menuItemId === "open-selection-incognito") {
         const selection = info.selectionText.trim();
 
@@ -39,36 +47,35 @@ chrome.contextMenus.onClicked.addListener(info => {
                 url = 'https://' + url;
             }
 
-            openInIncognito(url);
+            await openInIncognito(url);
         } else {
             const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(selection)}`;
 
-            openInIncognito(searchUrl);
+            await openInIncognito(searchUrl);
         }
     } else if (info.menuItemId === "open-page-incognito") {
-        openInIncognito(info.pageUrl);
+        await openInIncognito(info.pageUrl);
     }
 });
 
 /**
  * Handle toolbar icon click
  */
-chrome.action.onClicked.addListener(tab => {
+browser.action.onClicked.addListener(async (tab) => {
     if (tab?.url) {
-        openInIncognito(tab.url);
+        await openInIncognito(tab.url);
     }
 });
 
 /**
  * Handle keyboard shortcuts
  */
-chrome.commands.onCommand.addListener(command => {
+browser.commands.onCommand.addListener(async (command) => {
     if (command === "open_in_incognito") {
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            if (tabs && tabs.length > 0) {
-                openInIncognito(tabs[0].url);
-            }
-        });
+        const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+        if (tabs && tabs.length > 0) {
+            await openInIncognito(tabs[0].url);
+        }
     }
 });
 
@@ -76,15 +83,27 @@ chrome.commands.onCommand.addListener(command => {
  * Helper to open a URL in an incognito window
  * @param {string} url
  */
-function openInIncognito(url) {
+async function openInIncognito(url) {
     if (!url) return;
 
-    // Create new incognito window with the URL
-    chrome.windows.create({
-        url,
-        incognito: true,
-        focused: true
-    });
+    try {
+        // Create new incognito window with the URL
+        await browser.windows.create({
+            url,
+            incognito: true,
+            focused: true
+        });
+    } catch (err) {
+        if (err.message === "Extension does not have permission for incognito mode") {
+            browser.notifications.create("open-in-incognito-permission", {
+                type: "basic",
+                iconUrl: "icons/icon-128.png",
+                title: "Permission Required",
+                message: "Please grant 'Run in Private Windows' permission for 'Open in Incognito' extension to open links in incognito mode."
+            });
+        }
+        console.error("Failed to open URL in incognito:", err);
+    }
 }
 
 /**

@@ -1,5 +1,5 @@
 # Open in Incognito
-[![Chrome Users](https://img.shields.io/chrome-web-store/users/hgbdhkeihmnagnajcdompejmafifhkhc?style=for-the-badge&logo=googlechrome&label=Chrome%20Users)](https://chromewebstore.google.com/detail/hgbdhkeihmnagnajcdompejmafifhkhc) [![Mozilla Add-on Users](https://img.shields.io/amo/users/open-in-incognito?style=for-the-badge&logo=firefoxbrowser&label=Firefox%20Users)](https://addons.mozilla.org/en-US/firefox/addon/open-in-incognito)
+[![Chrome Users](https://img.shields.io/chrome-web-store/users/hgbdhkeihmnagnajcdompejmafifhkhc?style=for-the-badge&logo=googlechrome&label=Chrome%20Users)](https://chromewebstore.google.com/detail/hgbdhkeihmnagnajcdompejmafifhkhc) [![Mozilla Add-on Users](https://img.shields.io/amo/users/open-link-in-incognito?style=for-the-badge&logo=firefoxbrowser&label=Firefox%20Users)](https://addons.mozilla.org/en-US/firefox/addon/open-link-in-incognito)
 
 Open in Incognito is a browser extension that allows you to quickly open the current tab, a link, or selected text in an incognito window.
 

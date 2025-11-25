@@ -2,14 +2,6 @@
  * Open in Incognito - Background Script
  */
 
-try {
-    if (typeof chrome !== "undefined" || typeof browser === "undefined") {
-        importScripts("browser-polyfill.min.js");
-    }
-} catch {
-    // Ignore, likely not in a Service Worker or already loaded
-}
-
 // Create context menu items on installation
 browser.runtime.onInstalled.addListener(() => {
     browser.contextMenus.create({
